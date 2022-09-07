@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./movieList.css";
 
 const MoviesList = (props) => {
@@ -19,7 +19,13 @@ const [movies,setMovies] = useState([]);
 const [loading,setLoading] = useState(false);
 const [error,setError] =useState(null);
 
-async function movieFetcher()
+useEffect(()=>
+{
+ movieFetcher();
+},[])
+
+
+ const  movieFetcher =  useCallback(async ()=>
 {
     setError(null);
     setLoading(true);
@@ -48,8 +54,10 @@ async function movieFetcher()
    
  }
  setLoading(false);
+
+
  
-}
+},[])
 
 
 
